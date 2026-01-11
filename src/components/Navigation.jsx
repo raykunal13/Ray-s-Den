@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
+import { navItems } from "../data/navigation";
+
 export default function Navigation({ activeSection, scrollToSection }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -10,21 +12,16 @@ export default function Navigation({ activeSection, scrollToSection }) {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    { id: 'hero', label: 'Home' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'education', label: 'Education' },
-    { id: 'contact', label: 'Contact' }
-  ];
-
   return (
-    <motion.nav 
+    <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-slate-900/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+        scrolled
+          ? "bg-slate-900/95 backdrop-blur-md shadow-lg"
+          : "bg-transparent"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -32,7 +29,7 @@ export default function Navigation({ activeSection, scrollToSection }) {
     >
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
-          <motion.div 
+          <motion.div
             className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
             whileHover={{ scale: 1.05 }}
           >
@@ -46,7 +43,9 @@ export default function Navigation({ activeSection, scrollToSection }) {
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 className={`text-sm font-medium transition-colors duration-300 relative ${
-                  activeSection === item.id ? 'text-blue-400' : 'text-gray-300 hover:text-white'
+                  activeSection === item.id
+                    ? "text-blue-400"
+                    : "text-gray-300 hover:text-white"
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -81,7 +80,7 @@ export default function Navigation({ activeSection, scrollToSection }) {
           animate={isOpen ? "open" : "closed"}
           variants={{
             open: { height: "auto", opacity: 1 },
-            closed: { height: 0, opacity: 0 }
+            closed: { height: 0, opacity: 0 },
           }}
           transition={{ duration: 0.3 }}
           style={{ overflow: "hidden" }}
@@ -95,7 +94,7 @@ export default function Navigation({ activeSection, scrollToSection }) {
                   setIsOpen(false);
                 }}
                 className={`block w-full text-left px-4 py-2 text-sm transition-colors duration-300 ${
-                  activeSection === item.id ? 'text-blue-400' : 'text-gray-300'
+                  activeSection === item.id ? "text-blue-400" : "text-gray-300"
                 }`}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}

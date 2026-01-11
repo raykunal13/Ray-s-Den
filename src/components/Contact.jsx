@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, MapPin, Phone, Mail, MessageSquare } from "lucide-react";
+import { Send, MessageSquare } from "lucide-react";
+import { contactInfo } from "../data/contact";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -22,27 +23,6 @@ export default function Contact() {
     // Handle form submission here
     console.log("Form submitted:", formData);
   };
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      title: "Email",
-      detail: "hulala737@gmail.com",
-      link: "mailto:hulala737@gmail.com",
-    },
-    {
-      icon: Phone,
-      title: "Phone",
-      detail: "+91 8238751XXX",
-      link: "tel:+91 8238751XXX",
-    },
-    {
-      icon: MapPin,
-      title: "Location",
-      detail: "Greater Noida, Delhi NCR",
-      link: "#",
-    },
-  ];
 
   return (
     <section id="contact" className="py-20 px-6 bg-slate-900/90">
